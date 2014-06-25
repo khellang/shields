@@ -1195,7 +1195,7 @@ cache(function(data, match, sendBadge) {
   var format = match[3];
   var filter = 'Id eq \'' + repo + '\' and IsLatestVersion eq true';
   var apiUrl = 'https://www.' + site + '.org/api/v2/Packages()?$filter=' + encodeURIComponent(filter);
-  var badgeData = getBadgeData('downloads', data);
+  var badgeData = getBadgeData(site === 'nuget' ? 'downloads' : 'installs', data);
   request(apiUrl, { headers: { 'Accept': 'application/atom+json,application/json' } }, function(err, res, buffer) {
     if (err != null) {
       badgeData.text[1] = 'inaccessible';
